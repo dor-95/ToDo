@@ -2,4 +2,4 @@
 
 Projeto pessoal para gerenciar tarefas
 
-![alt text](image.png)
+![alt text](img/image.png)
