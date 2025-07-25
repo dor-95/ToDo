@@ -26,4 +26,115 @@ main {
     background-color: #f4f6fa;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+    padding: 0 30px;
+}
+
+.container__title {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #8b9099b0;
+
+    padding: 20px;
+}
+
+.title {
+    font-size: 3rem;
+}
+
+.container__add {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px 10px;
+    border-bottom: 1px solid #8b9099b0;
+}
+
+.container__add > div,
+.container__search > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.container__add > h2,
+.container__search > h2,
+.container__filter > h2 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.container__add input,
+.container__search input  {
+    padding: 1.2rem;
+    width: 30rem;
+    border: 1px solid #8b9099b0;
+    border-radius: 5px;
+}
+
+.container__add button,
+.container__search button {
+    width: 5rem;
+    height: 4rem;
+    border: 2px solid #324D6C;
+}
+
+.container__add input::placeholder,
+.container__search input::placeholder {
+    font-family: "Roboto Mono", monospace;
+}
+
+.btn__padrao {
+    width: 5rem;
+    height: 4rem;
+    border: 2px solid #324D6C;
+    cursor: pointer;
+}
+
+.btn__padrao:hover {
+    background-color: #1e3c72;
+    color: #f4f6fa;
+}
+
+.btn__padrao i {
+    font-size: 2rem;
+}
+
+.container__options {
+    display: flex;
+    padding: 20px 10px;
+}
+
+.container__search input {
+    width: 25rem;
+}
+
+.container__filter {
+    border-left: 1px solid #8b9099b0;
+    margin-left: 2rem;
+    padding-left: 2rem;
+}
+
+.container__filter > select {
+    font-family: "Roboto Mono", monospace;
+    padding: 1rem;
+    width: 15rem;
+    font-size: 1.6rem;
+    border: 1px solid #8b9099b0;
+    border-radius: 0.3rem;
+    color: #324D6C;
+    cursor: pointer;
+}
+
+.container__task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border-bottom: 1px solid #8b9099b0;
+}
+
+.container__task  p {
+    font-size: 1.5rem;
+    width: 30rem;
 }

@@ -4,36 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="icon__tarefa.png">
+    <link rel="icon" type="image/png" href="img/icon__tarefa.png">
     <link rel="stylesheet" href="style.css">
     <title>To-Do List</title>
 </head>
 <body>
     <main>
         <div class="container__title">
-            <h1>To-Do List</h1>
+            <h1 class="title">To-Do List</h1>
         </div>
-        <div>
+        <div class="container__add">
             <h2>Adicione sua tarefa</h2>
             <div>
                 <input type="text" placeholder="O que você vai fazer?">
-                <button>
+                <button class="btn__padrao">
                     <i class="fa-solid fa-plus"></i>
                 </button>
             </div>
         </div>
         <div>
-            <div>
-                <div>
+            <div class="container__options">
+                <div class="container__search">
                     <h2>Pesquisar:</h2>
                     <div>
                         <input type="text" placeholder="Buscar...">
-                        <button>
+                        <button class="btn__padrao">
                             <i class="fa-solid fa-delete-left"></i>
                         </button>
                     </div>
                 </div>
-                <div>
+                <div class="container__filter">
                     <h2>Filtrar:</h2>
                     <select name="" id="">
                         <option value="">Todos</option>
@@ -41,34 +41,39 @@
                 </div>
             </div>
             <div>
-                <div>
-                    <div>Ir ao mercado</div>
+
+                <div class="container__task">
                     <div>
-                        <button>
+                        <p>Ir ao mercado</p>
+                    </div>
+                    <div class="container__buttons">
+                        <button class="btn__padrao">
                             <i class="fa-solid fa-check"></i>
                         </button>
-                        <button>
+                        <button class="btn__padrao">
                             <i class="fa-solid fa-pencil"></i>
                         </button>
-                        <button>
+                        <button class="btn__padrao">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>
                 </div>
-                <div>
-                        <div>Lavar o carro</div>
-                    <div>
-                        <button>
+
+                <div class="container__task">
+                    <p>Lavar o carro</p>
+                    <div class="container__buttons">
+                        <button class="btn__padrao">
                             <i class="fa-solid fa-check"></i>
                         </button>
-                        <button>
+                        <button class="btn__padrao">
                             <i class="fa-solid fa-pencil"></i>
                         </button>
-                        <button>
+                        <button class="btn__padrao">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>
                 </div>
+
             </div>
         </div>
     </main>
