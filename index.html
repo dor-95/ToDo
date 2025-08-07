@@ -16,8 +16,8 @@
         <div class="container__add">
             <h2>Adicione sua tarefa</h2>
             <div>
-                <input type="text" placeholder="O que você vai fazer?">
-                <button class="btn__padrao">
+                <input id="inputTarefa" type="text" placeholder="O que você vai fazer?">
+                <button id="btnAdiciona" class="btn__padrao">
                     <i class="fa-solid fa-plus"></i>
                 </button>
             </div>
@@ -40,35 +40,42 @@
                     </select>
                 </div>
             </div>
-            <div>
+            <div id="containerTask">
 
                 <div class="container__task">
+
                     <div>
-                        <p>Ir ao mercado</p>
+                        <input type="text" class="task__text" disabled value="Ir ao mercado">
                     </div>
+
                     <div class="container__buttons">
-                        <button class="btn__padrao">
+                        <button class="btn__padrao checar">
                             <i class="fa-solid fa-check"></i>
                         </button>
-                        <button class="btn__padrao">
+                        <button class="btn__padrao editar">
                             <i class="fa-solid fa-pencil"></i>
                         </button>
-                        <button class="btn__padrao">
+                        <button class="btn__padrao excluir">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>
+                    
                 </div>
 
                 <div class="container__task">
-                    <p>Lavar o carro</p>
+
+                    <div>
+                        <input type="text" class="task__text" disabled value="Lavar o carro">
+                    </div>
+
                     <div class="container__buttons">
-                        <button class="btn__padrao">
+                        <button class="btn__padrao checar">
                             <i class="fa-solid fa-check"></i>
                         </button>
-                        <button class="btn__padrao">
+                        <button class="btn__padrao editar">
                             <i class="fa-solid fa-pencil"></i>
                         </button>
-                        <button class="btn__padrao">
+                        <button class="btn__padrao excluir">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>
@@ -78,4 +85,6 @@
         </div>
     </main>
 </body>
+
+    <script src="script.js"></script>
 </html>

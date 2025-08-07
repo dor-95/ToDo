@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
+:root {
+  --gradient: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +20,7 @@ body {
     justify-content: center;
 
     height: 100vh;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: var(--gradient);
 }
 
 main {
@@ -65,7 +69,7 @@ main {
 }
 
 .container__add input,
-.container__search input  {
+.container__search input {
     padding: 1.2rem;
     width: 30rem;
     border: 1px solid #8b9099b0;
@@ -137,4 +141,35 @@ main {
 .container__task  p {
     font-size: 1.5rem;
     width: 30rem;
+}
+
+.container__buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.task__text {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 1.6rem;
+  border: none;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #333;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+.task__text.editando {
+  background-color: #fff9e6; /* amarelo claro */
+  border: 1px solid #ffc107;
+  box-shadow: 0 0 3px #ffc107;
+  color: #000;
+}
+
+.task__text.check {
+  text-decoration: line-through;
+  color: gray;
 }
