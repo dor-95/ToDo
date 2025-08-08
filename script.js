@@ -1,4 +1,30 @@
+class Tarefa {
+
+    static lista = [];
+
+    constructor(descricao = '', isConcluida = false) {
+        this.id = Tarefa.gerarId();
+        this.descricao = descricao;
+        this.isConcluida = isConcluida;
+        Tarefa.lista.push(this);
+    }
+
+    getId() {
+        return this.id;
+    }
+
+    static gerarId() {
+        if (Tarefa.lista.length === 0) return 1;
+        return Tarefa.lista[Tarefa.lista.length - 1].id + 1;
+    }
+
+    static getTarefaPorId(id) {
+        return Tarefa.lista.find(tarefa => tarefa.id === parseInt(id));
+    }
+}
+
 const btnAdiciona = document.getElementById("btnAdiciona");
+const selectStatus = document.getElementById("selectStatus");
 
 const btnChecar = document.getElementsByClassName("checar");
 const btnEditar = document.getElementsByClassName("editar");
@@ -13,6 +39,29 @@ const btnEvento = [
   (e) => editarTarefa(e),
   (e) => excluir(e)
 ];
+
+selectStatus.addEventListener("change", function(e) {
+    filtrarTarefas(e.target.value);
+})
+
+function filtrarTarefas(filtro) {
+    const containers = document.querySelectorAll(".container__task");
+
+    containers.forEach((container) => {
+        const status = container.dataset.status;
+
+        let mostrar = true;
+
+        if (filtro === 'pendentes') {
+            mostrar = status === 'false';
+        } else if (filtro === 'concluidas') {
+            mostrar = status === 'true';
+        }
+
+        container.style.display = mostrar ? 'flex' : 'none';
+
+    });
+}
 
 btnAdiciona.addEventListener("click", (e) => {
     if (tarefa.value != '') {
@@ -30,43 +79,61 @@ adicionarEventos(btnChecar, concluirTarefa);
 adicionarEventos(btnEditar, editarTarefa);
 adicionarEventos(btnExcluir, excluir);
 
-function adicionaTarefa(tarefa) {
-    
+function adicionaTarefa(tarefaDescricao) {
+    const novaTarefa = new Tarefa(tarefaDescricao);
+
+    const tarefaElemento = criarElementoTarefa(novaTarefa);
+    containerTask.appendChild(tarefaElemento);
+}
+
+function criarElementoTarefa(tarefa) {
     const container = document.createElement("div");
     container.classList.add("container__task");
+    container.setAttribute('data-id', tarefa.id);
+    container.setAttribute('data-status', tarefa.isConcluida);
 
-    const containerDescricao = document.createElement("div");
-    const inputTarefa = document.createElement("input");
-    inputTarefa.type = "text";
-    inputTarefa.classList.add("task__text");
-    inputTarefa.value = tarefa;
-    inputTarefa.disabled = true;
-    containerDescricao.appendChild(inputTarefa);
-
-    const containerButtons = document.createElement("div");
-    containerButtons.classList.add("container__buttons");
-
-    icons.forEach((item, index) => {
-        if (index >= 1) {
-            const button = document.createElement("button");
-            button.classList.add("btn__padrao");
-
-            button.addEventListener("click", (e) => {
-                btnEvento[index - 1](e);
-            })
-
-            const icon = document.createElement("i");
-            icon.classList.add(icons[0], item);
-
-            button.appendChild(icon);
-            containerButtons.appendChild(button);
-        }
-    });
+    const containerDescricao = criarInputDescricao(tarefa.descricao);
+    const containerButtons = criarBotoesTarefa();
 
     container.appendChild(containerDescricao);
     container.appendChild(containerButtons);
 
-    containerTask.appendChild(container);
+    return container;
+}
+
+function criarInputDescricao(descricao) {
+    const containerDescricao = document.createElement("div");
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.classList.add("task__text");
+    input.value = descricao;
+    input.disabled = true;
+
+    containerDescricao.appendChild(input);
+    return containerDescricao;
+}
+
+function criarBotoesTarefa() {
+    const containerButtons = document.createElement("div");
+    containerButtons.classList.add("container__buttons");
+
+    icons.slice(1).forEach((iconClass, index) => {
+        const button = document.createElement("button");
+        button.classList.add("btn__padrao");
+
+        button.addEventListener("click", (e) => {
+            btnEvento[index](e);
+        });
+
+        const icon = document.createElement("i");
+        icon.classList.add(icons[0], iconClass); // ex: 'fa', 'fa-trash'
+
+        button.appendChild(icon);
+        containerButtons.appendChild(button);
+    });
+
+    return containerButtons;
 }
 
 function concluirTarefa(e) {
@@ -79,6 +146,9 @@ function concluirTarefa(e) {
     const texto = container.querySelector('.task__text');
     if (texto) {
         texto.classList.toggle('check');
+        const tarefa = Tarefa.getTarefaPorId(container.dataset.id);
+        tarefa.isConcluida = !tarefa.isConcluida
+        container.setAttribute('data-status', tarefa.isConcluida);
     }
 }
 
@@ -118,3 +188,17 @@ function excluir(e) {
     if (!tarefa) return;
     tarefa.remove();
 }
+
+const descricoes = [
+  'Ir no mercado',
+  'Lavar o carro',
+  'Estudar JavaScript',
+  'Fazer exercícios físicos',
+  'Organizar a mesa',
+  'Ler um capítulo de livro'
+];
+
+for (let i = 0; i < descricoes.length; i++) {
+  adicionaTarefa(descricoes[i]);
+}
+
