@@ -21,9 +21,18 @@ class Tarefa {
     static getTarefaPorId(id) {
         return Tarefa.lista.find(tarefa => tarefa.id === parseInt(id));
     }
+
+    static getTarefaPorDescricao(descricao) {
+        const busca = descricao.toLowerCase();
+        return Tarefa.lista.filter(tarefa =>
+            tarefa.descricao.toLowerCase().includes(busca)
+    );
+}
 }
 
 const btnAdiciona = document.getElementById("btnAdiciona");
+const inputPesquisa = document.getElementById("inputPesquisa");
+const btnLimpar = document.getElementById("btnLimpar");
 const selectStatus = document.getElementById("selectStatus");
 
 const btnChecar = document.getElementsByClassName("checar");
@@ -40,11 +49,42 @@ const btnEvento = [
   (e) => excluir(e)
 ];
 
-selectStatus.addEventListener("change", function(e) {
-    filtrarTarefas(e.target.value);
+inputPesquisa.addEventListener("input", function(e) {
+    filtrarPorTexto(e.target.value)
 })
 
-function filtrarTarefas(filtro) {
+function filtrarPorTexto(filtro) {
+  filtro = filtro.toLowerCase();
+
+  let tarefasFiltradas = Tarefa.getTarefaPorDescricao(filtro);
+
+  filtrarPorTarefas(tarefasFiltradas);
+}
+
+function filtrarPorTarefas(tarefasFiltradas) {
+  const idsFiltrados = tarefasFiltradas.map(t => t.id);
+
+  const containers = document.querySelectorAll(".container__task");
+
+  containers.forEach(container => {
+    const id = Number(container.dataset.id);
+
+    const mostrar = idsFiltrados.includes(id);
+
+    container.style.display = mostrar ? 'flex' : 'none';
+  });
+}
+
+btnLimpar.addEventListener("click", (e) => {
+    inputPesquisa.value = '';
+    inputPesquisa.dispatchEvent(new Event('input'));
+});
+
+selectStatus.addEventListener("change", function(e) {
+    filtrarPorStatus(e.target.value);
+})
+
+function filtrarPorStatus(filtro) {
     const containers = document.querySelectorAll(".container__task");
 
     containers.forEach((container) => {
